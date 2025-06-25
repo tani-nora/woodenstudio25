@@ -1,0 +1,72 @@
+@use 'mixin' as *;
+@use 'variables' as *;
+
+
+.header{
+    display: flex;
+    //　display: flex; で親要素をFlexコンテナにしたときに使います。align-items: center; を親に指定すると、子要素たちが縦方向（または横方向：交差軸）に中央に揃うようになります。
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 120px;
+    padding: 0 40px;
+
+    @include mq(sp){
+        height: 64px;
+        padding: 0 0 0 16px;
+
+    }
+
+    &__logo{
+        width: 120px;
+
+        @include mq(sp){
+            width: 100px;
+        }
+    }
+    .nav{
+        display: flex;
+        column-gap: 32px;
+
+        @include mq(sp){
+            display: none;
+        }
+    }
+
+    .ham{
+        // 普段（pc）では非表示でdisplay: none;
+        display: none;
+        
+        @include mq(sp){
+            //　スマホ画面（mq(sp)）の時だけ、.ham 要素が「block表示」に切り替で display: block;
+            display: block;
+            width: 64px;
+            height: 64px;
+            padding: 16px;
+            background-color: $overlay1;
+        }
+
+        &-icon{
+            display: flex;
+            //　flex-flow はflex-direction（並ぶ方向）とflex-wrap（折り返すかどうか）を、1行で同時に指定できる記法です。cilume(縦並び),row(横並び)
+            flex-flow: column;
+            row-gap: 7px;
+            margin-bottom: 3.5px;
+        }
+    
+        &__border{
+            width: 100%;
+            height: 1.5px;
+            //　border-radiusは、丸み（半径）
+            border-radius: 2px;
+            background-color: #d9d9d9;
+        }
+
+        &__menu{
+            color: #fff;
+            font-size: 10px;
+        }
+    }
+}
